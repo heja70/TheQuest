@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 namespace TheQuest
 {
     using System.Drawing;
+    using System.Windows.Forms;
     class Game
     {
         public IEnumerable<Enemy> Enemies { get; private set; }
         public Weapon WeaponInRoom { get; private set; }
+        public Potion PotionInRoom { grt; private set;}
         private Player player;
         public Point PlayerLocation { get { return player.Location; } }
         public int PlayerHitPoints { get { return player.HitPoints; } }
@@ -70,6 +72,43 @@ namespace TheQuest
                     Enemies = new List<Enemy>() {new Bat(this, GetRandomLocation(random)),};
                     WeaponInRoom = new Sword(this, GetRandomLocation(random));
                     break;
+                case 2:
+                    Enemies = new List<Enemy>() {new Ghost(this, GetRandomLocation(random)),};
+                    WeaponInRoom = new Bow(this, GetRandomLocation(random));
+                    break;
+                case 3:
+                    Enemies = new List<Enemy>() { new Ghoul(this, GetRandomLocation(random)), };
+                    WeaponInRoom = new Bow(this, GetRandomLocation(random));
+                    break;
+                case 4:
+                    Enemies = new List<Enemy>() { new Bat(this, GetRandomLocation(random)), new Ghost(this, GetRandomLocation(random)) };
+                    if(1)
+                        WeaponInRoom = new Bow(this, GetRandomLocation(random));
+                    else
+                        PotionInRoom = new BluePotion(this, GetRandomLocation(random));
+                    break;
+                case 5:
+                    Enemies = new List<Enemy>() { new Bat(this, GetRandomLocation(random)), new Ghoul(this, GetRandomLocation(random)) };
+                    PotionInRoom = new RedPotion(this, GetRandomLocation(random));
+                    break;
+                case 6:
+                    Enemies = new List<Enemy>() { new Ghost(this, GetRandomLocation(random)), new Ghoul(this, GetRandomLocation(random)) };
+                    WeaponInRoom = new Mace(this, GetRandomLocation(random));
+                    break;
+                case 7:
+                    Enemies = new List<Enemy>() { new Bat(this, GetRandomLocation(random)), new Ghost(this, GetRandomLocation(random)), new Ghoul(this, GetRandomLocation(random)) };
+                    if(1)
+                        WeaponInRoom = new Mace(this, GetRandomLocation(random));
+                    else
+                        PotionInRoom = new RedPotion(this, GetRandomLocation(random));
+                    break;
+                case 8:
+                    Application.Exit();
+                    break;
+
+
+
+
             }
         }
     }
